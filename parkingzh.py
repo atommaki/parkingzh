@@ -1,40 +1,30 @@
 #!/usr/bin/env python3
 
 import feedparser
-import pprint
 import re
 import time
 
 python_wiki_rss_url = "http://www.pls-zh.ch/plsFeed/rss"
 
 feed = feedparser.parse( python_wiki_rss_url )
-timestamp=int(time.time())
-parking={}
-#pp = pprint.PrettyPrinter(indent=2)
+timestamp = int(time.time())
+parking = {}
 
-regex_int=re.compile('^[0-9]+$')
+regex_int = re.compile('^[0-9]+$')
 
-total=0
-for i in feed['items']:
-#  print "------------------------------------"
-#  pp.pprint(i)
-#  print "------------------------------------"
-  free=i['summary'].split(' ')[-1]
-  #title=i['title'].split('/')[0].rstrip().replace(' ','_').encode('utf-8')
-  title=i['title'].split('/')[0].rstrip().replace(' ','_')
-  if regex_int.match(free):
-    parking[title]=int(free)
-    total=total+int(free)
+total = 0
+for rss_item in feed['items']:
+  free_n = rss_item['summary'].split(' ')[-1]
+  pname  = rss_item['title'].split('/')[0].rstrip().replace(' ','_')
+  if regex_int.match(free_n):
+    parking[pname] = int(free_n)
+    total = total+int(free_n)
   else:
-    parking[title]=None
+    parking[pname] = None
 
 
-parking['Total']=total
+parking['Total'] = total
 
-for i in sorted(parking):
-  print(timestamp, end=' ')
-  print(";", end=' ')
-  print(i, end=' ')
-  print(";", end=' ')
-  print(parking[i])
+for pname in sorted(parking):
+  print(f'{timestamp} ; {pname} ; {parking[pname]}')
 
