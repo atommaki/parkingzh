@@ -1,0 +1,5 @@
+
+# Add this line to your crontab to start collecting data:
+
+*/1 * * * * ~/git/parkingzh/parkingzh-fetch-data.py >> ~/git/parkingzh-data/host-$(hostname | sha1sum | cut -c-6)-$(date +\%Y-\%m)-parkingzh.dat
+
