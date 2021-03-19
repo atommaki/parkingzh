@@ -4,8 +4,9 @@ parkingzh is a data collection of the available free space in parking garages
 of Zurich. The data is collected by multiple hosts since from this RSS feed:
 http://www.pls-zh.ch/plsFeed/rss
 
-The actual collected (raw) data is in the parkingzh-data repository, but all
-the scripts (for collecting data and preprocessing) and descriptions are in
+The actual collected (raw) data is in the
+[parkingzh-data](https://github.com/atommaki/parkingzh-data) repository, but
+all the scripts (for collecting data and preprocessing) and descriptions are in
 this repo. The data collection started in December 2016 and still ongoing.
 
 ## the data
